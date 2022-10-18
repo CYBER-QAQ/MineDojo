@@ -102,7 +102,7 @@ _ALL_VARS = {
         "witch",
         "enderman",
     ],
-    "end_mob": ["shulker", "endermite", "enderman",],
+    "end_mob": ["shulker", "endermite"],
     "nether_mob": [
         "blaze",
         "ghast",
@@ -474,10 +474,10 @@ _logger.info(
 def _parse_inventory_dict(inv_dict: dict[str, dict]) -> list[InventoryItem]:
     return [InventoryItem(slot=k, **v) for k, v in inv_dict.items()]
 
-
+import copy
 def _specific_task_make(task_id: str, *args, **kwargs):
     assert task_id in ALL_TASKS_SPECS, f"Invalid task id provided {task_id}"
-    task_specs = ALL_TASKS_SPECS[task_id].copy()
+    task_specs = copy.deepcopy(ALL_TASKS_SPECS[task_id])
 
     # handle list of inventory items
     if "initial_inventory" in task_specs:
@@ -491,6 +491,12 @@ def _specific_task_make(task_id: str, *args, **kwargs):
 
     # meta task
     meta_task_cls = task_specs.pop("__cls__")
+    #print('{}\n{}\n{}\n{}'.format(meta_task_cls, args, task_specs, kwargs))
+    for key in kwargs:
+        if key in task_specs:
+            task_specs.pop(key)
+            print('warning: the default programmatic task argument {} is modified'.format(key))
+    #print(task_specs, kwargs)
     task_obj = _meta_task_make(meta_task_cls, *args, **task_specs, **kwargs)
     return task_obj
 

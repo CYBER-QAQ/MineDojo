@@ -1,19 +1,57 @@
 // For those who want the bleeding edge
 buildscript {
     repositories {
-
-        maven { url 'https://jitpack.io' }
-        jcenter()
-        mavenCentral()
+        mavenLocal()
+        maven {url "https://maven.aliyun.com/repository/jcenter"}
+        maven { url "https://maven.aliyun.com/repository/central" }
+        // maven { url "https://maven.aliyun.com/repository/public" }
+        // maven { url "https://maven.aliyun.com/repository/google" }
+        // maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+       // maven { url 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/' }
+        
+        maven {
+            name = "forge"
+            // url = "https://maven.minecraftforge.net/"
+            url="http://lss233.littleservice.cn/repositories/minecraft"
+        }
+        
+        //  maven {
+        //     name = "forge"
+        //      url = "http://forgemavenmirror.sinaapp.com/maven"
+        // }
+        
         maven {
             name = "forge"
             url = "https://maven.minecraftforge.net/"
+            //url="http://lss233.littleservice.cn/repositories/minecraft"
+        }
+        maven {
+            name = "forge"
+            url = "https://files.minecraftforge.net/"
         }
         maven {
             name = "sonatype"
             url = "https://oss.sonatype.org/content/repositories/snapshots/"
         }
+        // maven { url 'https://jitpack.io' }
+        maven { url 'https://jitpack.io' }
+        jcenter()
+        mavenCentral()
+        // jcenter()
+        // mavenCentral()
+        // maven {
+        //     name = "forge"
+        //     // url = "https://maven.minecraftforge.net/"
+        //     url="http://lss233.littleservice.cn/repositories/minecraft"
+        // }
+        // maven {
+        //     name = "sonatype"
+        //     url = "https://oss.sonatype.org/content/repositories/snapshots/"
+        // }
+        
     }
+   
+
     dependencies {
         classpath 'org.ow2.asm:asm:6.0'
         classpath('com.github.SpongePowered:MixinGradle:dcfaf61'){ // 0.6
@@ -23,6 +61,7 @@ buildscript {
         }
 
         classpath 'com.github.brandonhoughton:ForgeGradle:FG_2.2_patched-SNAPSHOT'
+        //classpath 'net.minecraftforge.gradle:ForgeGradle:FG_2.2_patched-SNAPSHOT'
     }
     configurations {
         compileClasspath {
@@ -36,6 +75,7 @@ buildscript {
     }
 }
 
+
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '1.2.4'
@@ -43,6 +83,7 @@ plugins {
 
 dependencies {
     implementation 'com.github.brandonhoughton:forgegradle:FG_2.2_patched-SNAPSHOT'
+    //implementation 'net.minecraftforge.gradle:forgegradle:FG_2.2_patched-SNAPSHOT'
 }
 
 apply plugin: 'net.minecraftforge.gradle.forge'
@@ -87,10 +128,39 @@ runClient {
 }
 
 repositories {
+    mavenLocal()
+    maven {url "https://maven.aliyun.com/repository/jcenter"}
+    maven { url "https://maven.aliyun.com/repository/central" }
+    // maven { url "https://maven.aliyun.com/repository/public" }
+    // maven { url "https://maven.aliyun.com/repository/google" }
+    // maven { url "https://maven.aliyun.com/repository/gradle-plugin" }
+    // maven { url 'https://mirrors.cloud.tencent.com/nexus/repository/maven-public/' }
+    maven {
+            name = "forge"
+            url = "https://maven.minecraftforge.net/"
+            //url = "http://forgemavenmirror.sinaapp.com/maven"
+            //url="http://lss233.littleservice.cn/repositories/minecraft"
+        }
+    maven {
+            name = "forge"
+            // url = "https://maven.minecraftforge.net/"
+            url="http://lss233.littleservice.cn/repositories/minecraft"
+        }
+     maven {
+            name = "forge"
+            // url = "https://maven.minecraftforge.net/"
+             url = "https://files.minecraftforge.net/"
+        }
+            
     maven {
         name = "SpongePowered Repo"
         url = "https://repo.spongepowered.org/maven/"
     }
+    // maven {
+    //         name = "forge"
+    //         // url = "https://maven.minecraftforge.net/"
+    //         url="http://lss233.littleservice.cn/repositories/minecraft"
+    //     }
     maven { url 'https://jitpack.io' }
 }
 
