@@ -1,12 +1,12 @@
-##Modified MineDojo Package
+## Modified MineDojo Package
 
-###Installation
+### Installation
 
 Uninstall your minedojo package.
 
 Clone this repo. Run `python setup.py install`
 
-###Modification
+### Modification
 
 - In `minedojo/tasks/__init__.py`: 
 
